@@ -2,4 +2,21 @@
 
 {% block content %}
 
-    
+<h1>Build a Blog</h1>
+
+<hr />
+<form action='/blog' method="post">
+{% if blog|length == 0 %}
+<p>No Blogs yet</p>
+    {% else %}
+   
+    {% for blog in blogs %}
+    <h2>{{blog.title}}</h2>
+    <p>{{blog.body}}</p>    
+   
+{% endfor %}
+{% endif %}
+
+<hr />
+</form>
+{% endblock %}

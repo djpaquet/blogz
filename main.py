@@ -26,8 +26,14 @@ def index():
     return render_template('newpost.html')
 
 
-@app.route('/blog', methods=['POST'])
+@app.route('/blog', methods=['GET', 'POST'])
 def blog():
+    
+    title = request.form['title']
+    body = request.form['body']
+    blog = Blog(title,body)
+
+    return render_template('blog.html')
 
     
 @app.route('/newpost', methods=['POST'])
@@ -35,11 +41,16 @@ def new_post():
 
     title = request.form['title']
     body = request.form['body']
-    if body.
+    
     new_post = Blog(title,body)
     db.session.add(new_post)
     db.session.commit()
+    
+    return redirect('/display_blog')
 
+@app.route('/display_blog.html', methods=['POST'])
+def display_blog():
+    return render_template ('display_blog.html')
 
 
 if __name__ == '__main__':
