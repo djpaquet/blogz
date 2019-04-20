@@ -50,9 +50,9 @@ def newpost():
         elif not body:
             flash ('Please enter a blog post')
             return redirect ('/newpost')
-        else:
-            db.session.add(blog)
-            db.session.commit()
+        
+    db.session.add(blog)
+    db.session.commit()
             #return redirect ('/display.html', title=title, body=body)
             
     
