@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <title>{{title}}</title>
+        <title>Build a Blog</title>
         <style type="text/css">
         .error {
             color: red;
@@ -23,15 +23,18 @@
         
         </style>
     </head>
-
+ <body>
     <div>
-        <a href="/blog.html">Main Blog Page</a> |
-        <a href= "/newpost.html">Make a Blog Entry</a>
+        <a href="blog">Main Blog Page</a> |
+        <a href= "newpost">Make a Blog Entry</a>
     </div>
+        
+    {% block content %}
 
-    <body>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% endwith %}
 
-        {% block content %}
-        {% endblock %}
+    {% endblock %}
+
     </body>
 </html>

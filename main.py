@@ -18,39 +18,53 @@ class Blog(db.Model):
 
         self.title = title
         self.body = body
-
+ 
     
 
-@app.route('/')
-def index():
+@app.route('/blog')
+def blog():
+    title = request.args.get('title')
+    body = request.args.get('body')
+
+    blog = Blog(title, body)
+
+    #blog_id = int(request.form['blog-id']
+    
+    blogs = Blog.query.filter_by().all()
+    
+    return render_template ('blog.html', blogs=blogs) 
+
+    
+@app.route('/newpost', methods=['POST', 'GET'])
+def newpost():
+    
+    if request.method == 'POST':
+        title = request.form['title']
+        body = request.form['body']
+        blog = Blog(title, body) 
+        
+
+        if (not title):
+            flash ("Please enter a title")
+            return redirect('/newpost')
+        elif not body:
+            flash ('Please enter a blog post')
+            return redirect ('/newpost')
+        else:
+            db.session.add(blog)
+            db.session.commit()
+            #return redirect ('/display.html', title=title, body=body)
+            
+    
+
     return render_template('newpost.html')
 
-
-@app.route('/blog', methods=['GET', 'POST'])
-def blog():
-    
+@app.route('/display_blog', methods=['POST'])
+def display():
     title = request.form['title']
     body = request.form['body']
-    blog = Blog(title,body)
-
-    return render_template('blog.html')
-
-    
-@app.route('/newpost', methods=['POST'])
-def new_post():
-
-    title = request.form['title']
-    body = request.form['body']
-    
-    new_post = Blog(title,body)
-    db.session.add(new_post)
-    db.session.commit()
-    
-    return redirect('/display_blog')
-
-@app.route('/display_blog.html', methods=['POST'])
-def display_blog():
-    return render_template ('display_blog.html')
+    blog = Blog(title, body)
+    return render_template('display_blog.html', title=title, body=body)
 
 
 if __name__ == '__main__':

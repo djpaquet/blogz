@@ -5,18 +5,18 @@
 <h1>Build a Blog</h1>
 
 <hr />
-<form action='/blog' method="post">
-{% if blog|length == 0 %}
-<p>No Blogs yet</p>
-    {% else %}
-   
-    {% for blog in blogs %}
-    <h2>{{blog.title}}</h2>
-    <p>{{blog.body}}</p>    
-   
-{% endfor %}
-{% endif %}
 
-<hr />
-</form>
+
+    <form method="POST">
+    {% for blog in blogs %}
+    <h2><a href="display_blog">{{blog.title}}</a></h2>
+    <p>{{blog.body}}</p>   
+    </form>
+<hr />   
+{% endfor %}
+
+
+
+
+
 {% endblock %}

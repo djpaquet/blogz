@@ -3,16 +3,25 @@
 
 {% block content %}
 
-<form action="/" method="POST">
-    <h1>Make a Blog</h1>
+<h1>Make a Blog</h1>
+
+<form action="/display_blog" method="POST">
+    
     <div>Title for your new blog:</div>
-    <input type="text" name="title" value="">
+    <input type="text" name="title" />
+    
+    {% with messages = get_flashed_messages() %}
+    <p class="error">{{message}}<p>
+        {% endwith %}
     </label>
     <label>
         <div>Your new blog:</div>
         <textarea id="blog-box" name="body"></textarea> 
-    </label>
-    <input type="submit" name="Blog" />
+        {% with messages = get_flashed_messages() %}
+        <p class="error">{{messagae}}<p>
+        {% endwith %}
+        </label>
+    <input type="submit" name="Add Entry" />
 </form>
 
 
