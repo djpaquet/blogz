@@ -5,21 +5,21 @@
 
 <h1>Make a Blog</h1>
 
-<form action="/display_blog" method="POST">
+<form method="POST">
     
     <div>Title for your new blog:</div>
     <input type="text" name="title" />
     
-    {% with messages = get_flashed_messages() %}
+    
     <p class="error">{{message}}<p>
-        {% endwith %}
+        
     </label>
     <label>
         <div>Your new blog:</div>
         <textarea id="blog-box" name="body"></textarea> 
-        {% with messages = get_flashed_messages() %}
-        <p class="error">{{messagae}}<p>
-        {% endwith %}
+        
+        <p class='error'>{{messagae}}<p>
+       
         </label>
     <input type="submit" name="Add Entry" />
 </form>

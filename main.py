@@ -28,7 +28,7 @@ def blog():
 
     blog = Blog(title, body)
 
-    #blog_id = int(request.form['id']
+    blog_id = Blog.query.get('id')
     
     blogs = Blog.query.filter_by().all()
     
@@ -48,23 +48,23 @@ def newpost():
             flash ("Please enter a title")
             return redirect('/newpost')
         elif not body:
-            flash ('Please enter a blog post')
+            flash ('Please enter a blog post' )
             return redirect ('/newpost')
         else:
             db.session.add(blog)
             db.session.commit()
-            return redirect ('/display.html', title=title, body=body)
+            return redirect ('/display_blog')
                 
     
 
     return render_template('newpost.html')
 
-@app.route('/display_blog', methods=['POST'])
+@app.route('/display_blog')
 def display():
-    title = request.form['title']
-    body = request.form['body']
+    title = request.args.get('title')
+    body = request.args.get('body')
     blog = Blog(title, body)
-    return render_template('display_blog.html', title=title, body=body)
+    return render_template('display_blog.html', title=title, body=body, blog=blog)
 
 
 if __name__ == '__main__':
