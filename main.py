@@ -28,7 +28,7 @@ def blog():
 
     blog = Blog(title, body)
 
-    #blog_id = int(request.form['blog-id']
+    #blog_id = int(request.form['id']
     
     blogs = Blog.query.filter_by().all()
     
@@ -50,11 +50,11 @@ def newpost():
         elif not body:
             flash ('Please enter a blog post')
             return redirect ('/newpost')
-        
-    db.session.add(blog)
-    db.session.commit()
-            #return redirect ('/display.html', title=title, body=body)
-            
+        else:
+            db.session.add(blog)
+            db.session.commit()
+            return redirect ('/display.html', title=title, body=body)
+                
     
 
     return render_template('newpost.html')
