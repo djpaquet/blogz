@@ -38,19 +38,18 @@ def blog():
     
 @app.route('/newpost', methods=['POST', 'GET'])
 def newpost():
-    
+    title_error = "Please enter a title for your blog entry"
+    body_error = "Please enter a blog to post"
     if request.method == 'POST':
         title = request.form['title']
         body = request.form['body']
         blog = Blog(title, body) 
+        error = request.args.get('error')
         
-
-        if (not title):
-            title_error = "Plese enter a title for your blog entry"
-            return redirect('/newpost')
+        if not title:
+            return redirect('/newpost?=error')
         elif not body:
-            body_error = "Please enter a blog to post"
-            return redirect ('/newpost')
+            return redirect ('/newpost?=error')
         else:
             db.session.add(blog)
             db.session.commit()
@@ -58,7 +57,7 @@ def newpost():
                 
     
 
-    return render_template('newpost.html')
+    return render_template('newpost.html', body_error=body_error, title_error=title_error)
 
 #@app.route('/display_blog', methods=['GET', 'POST'])
 #def display():
