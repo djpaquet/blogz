@@ -9,23 +9,15 @@
     <label>
     <div>Title for your new blog:</div>
     <input type="text" name="title" />
-    {% with messages = get_flashed_messages(category_filter=['title_error']) %}
-    {% for message in messages %}
-    
-    <p class="title_error">{{message}}<p>
-      {% endfor %}
-      
+    <p class="error">{{title_error}}<p> 
     </label>
-    {% endwith %}
+  
     <label>
         <div>Your new blog:</div>
         <textarea id="blog-box" name="body"></textarea> 
-        {% with message = get_flashed_messages(category_filter=['body_error']) %}
-        {% for message in messages %}
-        <p class='body_error'>{{message}}<p>
-         {% endfor %}   
+        <p class='error'>{{body_error}}<p>   
         </label>
-        {% endwith %}
+        
     <div>   
     <input type="submit" name="Add Entry" />
     </div>

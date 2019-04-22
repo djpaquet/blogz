@@ -46,10 +46,10 @@ def newpost():
         
 
         if (not title):
-            flash ("Please enter a title", 'title_error')
+            title_error = "Plese enter a title for your blog entry"
             return redirect('/newpost')
         elif not body:
-            flash ("Please make a entry", 'body_error' )
+            body_error = "Please enter a blog to post"
             return redirect ('/newpost')
         else:
             db.session.add(blog)
