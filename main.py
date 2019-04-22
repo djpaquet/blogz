@@ -19,20 +19,21 @@ class Blog(db.Model):
         self.title = title
         self.body = body
  
-    
-
-@app.route('/blog')
+@app.route('/blog', methods=['POST', 'GET'])
 def blog():
-    title = request.args.get('title')
-    body = request.args.get('body')
+    id = request.args.get('id')
 
-    blog = Blog(title, body)
+    if not id:
+        blogs = Blog.query.filter_by().all()
 
-    blog_id = Blog.query.get('id')
-    
-    blogs = Blog.query.filter_by().all()
-    
-    return render_template ('blog.html', blogs=blogs) 
+        return render_template('blog.html', title='Build a Blog', blogs=blogs)
+    else:
+        blogs = Blog.query.filter_by(id=id).all()
+
+        return render_template('blog.html', title='Build a Blog', blogs=blogs)
+
+
+
 
     
 @app.route('/newpost', methods=['POST', 'GET'])
@@ -53,18 +54,19 @@ def newpost():
         else:
             db.session.add(blog)
             db.session.commit()
-            return redirect ('/display_blog')
+            return render_template('display_blog.html', title=title, body=body, blog=blog)
                 
     
 
     return render_template('newpost.html')
 
-@app.route('/display_blog')
-def display():
-    title = request.args.get('title')
-    body = request.args.get('body')
-    blog = Blog(title, body)
-    return render_template('display_blog.html', title=title, body=body, blog=blog)
+#@app.route('/display_blog', methods=['GET', 'POST'])
+#def display():
+    #title = request.args.get('title')
+    #body = request.args.get('body')
+    #blog  = Blog(title,body)
+    
+    #return render_template('display_blog.html', title=title, body=body, blog=blog)
 
 
 if __name__ == '__main__':

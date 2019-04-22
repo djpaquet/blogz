@@ -6,22 +6,29 @@
 <h1>Make a Blog</h1>
 
 <form method="POST">
-    
+    <label>
     <div>Title for your new blog:</div>
     <input type="text" name="title" />
+    {% with messages = get_flashed_messages(category_filter=['title_error']) %}
+    {% for  message in messages %}
     
-    
-    <p class="error">{{message}}<p>
+    <p class="title_error">{{message}}<p>
+      {% endfor %}
       
     </label>
+    {% endwith %}
     <label>
         <div>Your new blog:</div>
         <textarea id="blog-box" name="body"></textarea> 
-        
-        <p class='error'>{{message}}<p>
-            
+        {% with errors = get_flashed_messages(category_filter = ['body_error']) %}
+        {% for message in messages %}
+        <p class='body_error'>{{message}}<p>
+         {% endfor %}   
         </label>
+        {% endwith %}
+    <div>   
     <input type="submit" name="Add Entry" />
+    </div>
 </form>
 
 
