@@ -10,7 +10,7 @@
     <div>Title for your new blog:</div>
     <input type="text" name="title" />
     {% with messages = get_flashed_messages(category_filter=['title_error']) %}
-    {% for  message in messages %}
+    {% for message in messages %}
     
     <p class="title_error">{{message}}<p>
       {% endfor %}
@@ -20,7 +20,7 @@
     <label>
         <div>Your new blog:</div>
         <textarea id="blog-box" name="body"></textarea> 
-        {% with errors = get_flashed_messages(category_filter = ['body_error']) %}
+        {% with message = get_flashed_messages(category_filter=['body_error']) %}
         {% for message in messages %}
         <p class='body_error'>{{message}}<p>
          {% endfor %}   
