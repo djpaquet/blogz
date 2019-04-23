@@ -2,17 +2,17 @@
 
 {% block content %}
 
-<h1>Register here to Blog!</h1>
+<h1>Sign up here to Blog!</h1>
 
 <form action="/register" method="POST">
     <table>
         <tbody>
             <tr>
                 <td>
-                    <label for='email'>Email</label>
+                    <label for='user'>Username</label>
                 </td>
                 <td>
-                    <input  type="text" name="email" value="{{email}}" placeholder="Email" />
+                    <input  type="text" name="username" value="{{user}}" placeholder="Username" />
                     <span class="error">{{email_error}}</span>
                 </td>
             </tr>
