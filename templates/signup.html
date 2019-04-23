@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Register here to Blog!</h1>
+
+<form action="/register" method="POST">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <label for='email'>Email</label>
+                </td>
+                <td>
+                    <input  type="text" name="email" value="{{email}}" placeholder="Email" />
+                    <span class="error">{{email_error}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for='password'>Password</label>
+                </td>
+                <td>
+                    <input type="password" name="password" value="{{password}}" placeholder="Password"/>
+                    <span class="error">{{password_error}}</span>
+                </td> 
+            </tr>
+            <tr>
+                <td>
+                    <label>Verify Password</label>
+                </td>
+                <td>
+                    <input type="password" name="verify_password" value="{{verify_password}}" placeholder="Verify Password" />
+                    <span class="error">{{verify_password_error}}</span>
+                </td> 
+                </tr>
+        </tbody>
+    </table>
+    <input type="submit" value="Sign up" name="Sign up" />
+</form>
+
+{% endblock %}
