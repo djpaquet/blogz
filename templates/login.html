@@ -7,22 +7,24 @@
 
 <form action="/login" method="POST" >
     <table>
-        <tr>
-            <td>
-                <label for='user'>Username</label>
-            </td>
-            <td>
-                <input name="email" type="text" value="{{user}}" /> 
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="password">Password</label>
-            </td>
-            <td>
-                <input name="password" type="password" value="{{password}}" />
-            </td>
-        </tr>
+        <tbody>
+            <tr>
+                <td>
+                    <label for='username'>Username</label>
+                </td>
+                <td>
+                    <input name="username" type="text" value="{{username}}" /> 
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="password">Password</label>
+                </td>
+                <td>
+                    <input name="password" type="password" value="{{password}}" />
+                </td>
+            </tr>
+        </tbody>
     </table>
     <input type="submit" value="Login" name="Login"/>
 </form>

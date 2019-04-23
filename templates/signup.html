@@ -4,7 +4,7 @@
 
 <h1>Sign up here to Blog!</h1>
 
-<form action="/register" method="POST">
+<form action="/signup" method="POST">
     <table>
         <tbody>
             <tr>
@@ -12,8 +12,8 @@
                     <label for='user'>Username</label>
                 </td>
                 <td>
-                    <input  type="text" name="username" value="{{user}}" placeholder="Username" />
-                    <span class="error">{{email_error}}</span>
+                    <input  type="text" name="username" value="{{username}}" placeholder="Username" />
+                    <span class="error">{{username_error}}</span>
                 </td>
             </tr>
             <tr>
@@ -30,9 +30,18 @@
                     <label>Verify Password</label>
                 </td>
                 <td>
-                    <input type="password" name="verify_password" value="{{verify_password}}" placeholder="Verify Password" />
+                    <input type="password" name="verify" value="{{verify}}" placeholder="Verify Password" />
                     <span class="error">{{verify_password_error}}</span>
                 </td> 
+                </tr>
+                <tr>
+                    <td>
+                        <label for="email">Email:</label>
+                    </td>
+                    <td>
+                        <input type="email" name="email" />
+                        <span class="error">{{email_error}}</span>
+                    </td>
                 </tr>
         </tbody>
     </table>

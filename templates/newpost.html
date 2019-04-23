@@ -5,10 +5,11 @@
 
 <h1>Make a Blog</h1>
 
-<form method="POST">
+<form method="POST" action='/newpost'>
     <label>
     <div>Title for your new blog:</div>
-    <input type="text" name="title" />
+    <input type="text" name="name" />
+    
      <p class="error">{{title_error}}</p>
     </label>
     
