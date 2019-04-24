@@ -11,11 +11,14 @@
             {% for blog in blogs %}
                 <h2><a href="/blog?id={{ blog.id }}">{{ blog.name }}</a></h2>
                 <p class="blog-post-content">{{ blog.body }}</p>
+                <p  class='post_author'>Post by <a href="/blog?username={{username}}">{{username}}</a>
             {% endfor %}
         {% else %}
             {% for blog in blogs %}
                 <h2>{{ blog.name }}</h2>
                 <p class="blog-post-content">{{ blog.body }}</p>
+                <p  class='post_author'>Post by <a href="/blog?username={{username}}">{{username}}</a>
+                </p>
             {% endfor %}
         {% endif %}
     </main>

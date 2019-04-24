@@ -150,15 +150,16 @@ def index():
 @app.route('/blog', methods=['POST', 'GET'])
 def blog():
     blog_id = request.args.get('id')
+    username = request.args.get('username')
     
     if not blog_id:
-        blogs = Blog.query.filter_by().all()
+        blogs = Blog.query.filter_by(username=username).all()
 
-        return render_template('blog.html', title='Blogz', blogs=blogs)
+        return render_template('blog.html', title='Blogz', blogs=blogs, username=username)
     else:
-        blogs = Blog.query.filter_by(blog_id=id).all()
+        blogs = Blog.query.filter_by(id=blog_id).all()
 
-        return render_template('blog.html', title='Blogz', blogs=blogs)
+        return render_template('blog.html', title='Blogz', blogs=blogs, username=username)
 
 
 @app.route('/newpost', methods=['POST', 'GET'])
