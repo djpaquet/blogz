@@ -9,12 +9,12 @@
         {% if not request.args.get('id') %}
             <h1>{{ title }}</h1>
             {% for blog in blogs %}
-                <h2><a href="/blog?id={{ blog.id }}">{{ blog.title }}</a></h2>
+                <h2><a href="/blog?id={{ blog.id }}">{{ blog.name }}</a></h2>
                 <p class="blog-post-content">{{ blog.body }}</p>
             {% endfor %}
         {% else %}
             {% for blog in blogs %}
-                <h2>{{ blog.title }}</h2>
+                <h2>{{ blog.name }}</h2>
                 <p class="blog-post-content">{{ blog.body }}</p>
             {% endfor %}
         {% endif %}

@@ -30,7 +30,6 @@ class User(db.Model):
     username = db.Column(db.String(120))
     password = db.Column(db.String(20))
     blogs = db.relationship('Blog', backref='author')
-    logged_in = db.Column(db.Boolean)
 
     def __init__(self, username, password, email):
         self.username = username
@@ -54,7 +53,7 @@ def login():
         if user and user.password == password:
             #TODO "remember" that the user has logged in
             session['logged_in'] = True
-            session['author_id'] = user.id
+            session['username'] = username
             print(session)
             flash('Logged in')
             
@@ -132,13 +131,13 @@ def signup():
         
                 else:
                     #TODO user better response messaging
-                    return '<h1>Duplicate use</h1>'
+                    return '<h1>Username already exists</h1>'
                     return redirect('/login')
             
     return render_template ('signup.html', username_error= username_error, password_error=password_error,
                             email_error=email_error, verify_password_error=verify_password_error)
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/')
 def index():
     
     users = User.query.all()
@@ -151,15 +150,15 @@ def index():
 @app.route('/blog', methods=['POST', 'GET'])
 def blog():
     blog_id = request.args.get('id')
-    user_id = request.args.get('user.id')
-    if not id:
+    
+    if not blog_id:
         blogs = Blog.query.filter_by().all()
 
-        return render_template('blog.html', title='Build a Blog', blogs=blogs)
+        return render_template('blog.html', title='Blogz', blogs=blogs)
     else:
-        blogs = Blog.query.filter_by(id=id).all()
+        blogs = Blog.query.filter_by(blog_id=id).all()
 
-        return render_template('blog.html', title='Build a Blog', blogs=blogs)
+        return render_template('blog.html', title='Blogz', blogs=blogs)
 
 
 @app.route('/newpost', methods=['POST', 'GET'])
@@ -170,8 +169,8 @@ def newpost():
     if request.method == 'POST':
         name = request.form['name']
         body = request.form['body']
-        author = User.filter_by(username=session['username']).first()
-        
+        author = User.query.filter_by(username=session['username']).first()
+        blog = Blog(name, body, author)
 
 
         if not name and not body:
@@ -185,18 +184,18 @@ def newpost():
             body_error = "Please enter a blog to post"
             return render_template('newpost.html', body_error=body_error)
         else:
-            blog = Blog(name, body, author) 
+             
             db.session.add(blog)
             db.session.commit()
             
-            return render_template('display_blog.html', name=name, body=body)
+            return render_template('display_blog.html', name=name, body=body, blog=blog)
                 
     return render_template('newpost.html',body_error=body_error, title_error=title_error )
 
-#@app.route('/logout')
-#def logout():
-    #del session['username']
-    #return redirect('/')
+@app.route('/logout')
+def logout():
+    del session['username']
+    return redirect('/')
 
     
 if __name__ == '__main__':
