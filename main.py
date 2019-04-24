@@ -153,7 +153,7 @@ def blog():
     username = request.args.get('username')
     
     if not blog_id:
-        blogs = Blog.query.filter_by(username=username).all()
+        blogs = Blog.query.filter_by().all()
 
         return render_template('blog.html', title='Blogz', blogs=blogs, username=username)
     else:

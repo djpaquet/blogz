@@ -8,14 +8,14 @@
 <form method="POST" action='/newpost'>
     <label>
     <div>Title for your new blog:</div>
-    <input type="text" name="name" />
+    <input class='blog_name' type="text" name="name" />
     
      <p class="error">{{title_error}}</p>
     </label>
     
     <label>
         <div>Your new blog:</div>
-        <textarea id="blog-box" name="body"></textarea> 
+        <textarea  name="body"></textarea> 
         <p class='error'>{{body_error}}<p>   
         </label>
         

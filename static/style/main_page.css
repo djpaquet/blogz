@@ -1,16 +1,57 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+}
+
 .error {
     color: red;
     font-style: italic
 }
  h1 { 
      text-align: center;
- }    
+     font-size: 50px;
+ }   
+ 
+ 
 textarea {
     width: 400px; 
     height: 200px;
-    
+    background-color: #eff2f4;
 }
-input[type=text]{
+
+.users {
+    font-size: 25px;
+}   
+
+
+input, 
+.blog_name {
+    background-color: #eff2f4;  
+}
+
+.blog_name {
     width: 400px;
-    
+}
+
+.user-path {
+    text-align: right
+
+}
+nav ul {
+    padding: 0;
+    display: inline-block;
+}
+
+nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+nav #user-account {
+    float: right;
+}
+
+.post_author{
+    font-style: italic;
+    font-size: small;
 }

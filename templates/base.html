@@ -3,38 +3,21 @@
 <html>
     <head>
         <title>Blogz</title>
-        <style type="text/css">
-        .error {
-            color: red;
-            font-style: italic
-        }
-         h1 { 
-             text-align: center;
-         }    
-        textarea {
-            width: 400px; 
-            height: 200px;
-            
-        }
-        input[type=text]{
-            width: 400px;
-            
-        }
-        
-        </style>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style/main_page.css') }}">
     </head>
  <body>
     <nav>
-        <div>
-            <a href="/" >Home</a>
-            <a href="blog">All Posts</a> 
-            <a href= "newpost">New Post</a>
-        </div>
-        <div>
-            <a href="/login">Log in</a>
-            <a href="signup">Sign up</a>
-            <a href="/logout">Log out</a>
-        </div>
+        <ul>
+            <li><a href="/" >Home</a></li>
+            <li> <a href="blog">All Posts</a></li>
+            <li><a href= "newpost">New Post</a></li>   
+        </ul>
+  
+        <ul id='user-account' >
+            <li><a href="/login">Log in</a></li>
+            <li><a href="signup">Sign up</a></li>
+            <li><a href="/logout">Log out</a></li>    
+        </ul>
     </nav>
         
     {% block content %}
