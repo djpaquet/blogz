@@ -1,0 +1,16 @@
+.error {
+    color: red;
+    font-style: italic
+}
+ h1 { 
+     text-align: center;
+ }    
+textarea {
+    width: 400px; 
+    height: 200px;
+    
+}
+input[type=text]{
+    width: 400px;
+    
+}
