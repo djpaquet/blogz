@@ -6,21 +6,16 @@
         <h1>{{ title }}</h1>
         <p>No blogs yet</p>
     {% else %}
-        {% if not request.args.get('id') %}
+   
             <h1>{{ title }}</h1>
             {% for blog in blogs %}
                 <h2><a href="/blog?id={{ blog.id }}">{{ blog.name }}</a></h2>
                 <p class="blog-post-content">{{ blog.body }}</p>
-                <p  class='post_author'>Post by <a href="/blog?username={{username}}">{{username}}</a>
-            {% endfor %}
-        {% else %}
-            {% for blog in blogs %}
-                <h2>{{ blog.name }}</h2>
-                <p class="blog-post-content">{{ blog.body }}</p>
-                <p  class='post_author'>Post by <a href="/blog?username={{username}}">{{username}}</a>
-                </p>
-            {% endfor %}
-        {% endif %}
+                <p  class='post_author'>Post by <a href="/blog?user={{blog.author_id}}">{{blog.author.username}}</a>
+           
+            
+        {% endfor %}
+       
     </main>
     {% endif %}
 {% endblock %}

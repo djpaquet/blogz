@@ -149,18 +149,19 @@ def index():
 
 @app.route('/blog', methods=['POST', 'GET'])
 def blog():
+    blogs = Blog.query.all()
     blog_id = request.args.get('id')
-    username = request.args.get('username')
-    
-    if not blog_id:
-        blogs = Blog.query.filter_by().all()
+    user_id = request.args.get('user')
 
-        return render_template('blog.html', title='Blogz', blogs=blogs, username=username)
-    else:
-        blogs = Blog.query.filter_by(id=blog_id).all()
+    if user_id:
+        blogs = Blog.query.filter_by(author_id=user_id)
+        return render_template ('user_blogs.html', blogs=blogs)
 
-        return render_template('blog.html', title='Blogz', blogs=blogs, username=username)
+    if blog_id:
+        blog = Blog.query.get(blog_id)
+        return render_template ('display_blog.html' , blog=blog)
 
+    return render_template ('blog.html', blogs=blogs)
 
 @app.route('/newpost', methods=['POST', 'GET'])
 def newpost():
