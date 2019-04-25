@@ -58,7 +58,7 @@ def login():
             print(session)
             flash('Logged in')
             
-            return render_template('index.html', user=user)
+            return redirect ('/')
         
         else:
             #TODO explain why login failed
@@ -132,7 +132,7 @@ def signup():
         
                 else:
                     #TODO user better response messaging
-                    return '<h1>Username already exists</h1>'
+                    flash ('User already exists', 'error')
                     return redirect('/login')
             
     return render_template ('signup.html', username_error= username_error, password_error=password_error,
@@ -141,7 +141,7 @@ def signup():
 @app.route('/')
 def index():
     #lists all usernames
-    
+
     users = User.query.all()
     return render_template('index.html', users=users, blog=blog)
     
