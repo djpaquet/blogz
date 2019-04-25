@@ -49,7 +49,8 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
-        
+        error = ''
+
         if user and user.password == password:
             #TODO "remember" that the user has logged in
             session['logged_in'] = True
@@ -57,11 +58,11 @@ def login():
             print(session)
             flash('Logged in')
             
-            return render_template('blog.html', user=user)
+            return render_template('index.html', user=user)
         
         else:
             #TODO explain why login failed
-            flash('User password incorrect, or user does not exist', 'error')
+            error = 'User password incorrect, or user does not exist'
             return render_template('login.html', error=error)
     
     return render_template('login.html')
@@ -139,13 +140,11 @@ def signup():
 
 @app.route('/')
 def index():
+    #lists all usernames
     
     users = User.query.all()
-    return render_template('index.html', users=users)
+    return render_template('index.html', users=users, blog=blog)
     
-    
-    #blogs = Blog.query.all()
-    #return render_template('blog.html', blogs=blogs)
 
 @app.route('/blog', methods=['POST', 'GET'])
 def blog():
