@@ -5,7 +5,7 @@ import random
 def make_salt():
     return ''.join([random.choice(string.ascii_letters) for x in range (5)])
 
-def make_pw_hash(password, salt = None):
+def make_pw_hash(password, salt=None):
     if not salt:
         salt = make_salt()
     hash = hashlib.sha256(str.encode(password + salt)).hexdigest()

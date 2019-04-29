@@ -29,7 +29,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(40), unique=True)
     username = db.Column(db.String(120))
-    pw_hash = db.Column(db.String(20))
+    pw_hash = db.Column(db.String(120))
     blogs = db.relationship('Blog', backref='author')
 
     def __init__(self, username, password, email):
