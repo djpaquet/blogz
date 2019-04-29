@@ -2,6 +2,7 @@ from flask import Flask, redirect, render_template, request, flash, session
 from flask_sqlalchemy import SQLAlchemy
 import traceback 
 import re
+from hashutils import make_pw_hash, check_pw_hash
 
 app = Flask(__name__)
 app.config['DEBUG']=True
@@ -28,12 +29,12 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(40), unique=True)
     username = db.Column(db.String(120))
-    password = db.Column(db.String(20))
+    pw_hash = db.Column(db.String(20))
     blogs = db.relationship('Blog', backref='author')
 
     def __init__(self, username, password, email):
         self.username = username
-        self.password = password
+        self.pw_hash = make_pw_hash(password)
         self.email = email
 
 @app.before_request
@@ -51,7 +52,7 @@ def login():
         user = User.query.filter_by(username=username).first()
         error = ''
 
-        if user and user.password == password:
+        if user and check_pw_hash(password, user.pw_hash):
             #TODO "remember" that the user has logged in
             session['logged_in'] = True
             session['username'] = username
